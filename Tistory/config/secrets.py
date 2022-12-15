@@ -5,10 +5,9 @@ API_KEY = {
 }
 
 LOGIN_INFO = {
-  'ID': 'aaa@naver.com',
-  'PW': 'aaaa'
+  'ID': 'youngkht1@naver.com',
+  'PW': 'sprwhrkr21'
 }
-
 
 BLOG_INFO = {
   'BLOG_NAME': 'goGetitA'
