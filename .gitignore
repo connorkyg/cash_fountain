@@ -3,6 +3,6 @@ __pycache__/
 imgs
 utils
 sample_data
-Coupang/config/secrets
-Tistory/config/secrets
+Coupang/config/secrets.py
+Tistory/config/secrets.py
 test*
