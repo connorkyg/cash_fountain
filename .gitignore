@@ -1,5 +1,8 @@
 __pycache__/
 *.DS_Store
 imgs
-chromedriver
-config.py
+utils
+sample_data
+Coupang Partners/Coupang/config/secrets
+Coupang Partners/Tistory/config/secrets
+test*
