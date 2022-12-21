@@ -6,3 +6,4 @@ sample_data
 Coupang/config/secrets.py
 Tistory/config/secrets.py
 test*
+Tistory/log/

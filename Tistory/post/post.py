@@ -13,7 +13,8 @@ if __name__ == '__main__':
     # product_data = coupangApis.get_product(url)
     # content = filing.top_ten(product_data)
     # print(content[1])
-    path = './20221209_122141_bbb.txt'
+    path = '../log/20221209_122141_bbb.txt'
     f = open(path, 'r', encoding='utf-8')
     content = f.read()
     tistoryApis.exec_post(keyword, content)
+    # tistoryApis.read_post()

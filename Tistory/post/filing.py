@@ -5,31 +5,9 @@ keyword = post.keyword
 now = time.strftime('%Y%m%d_%H%M%S')
 
 
-def test():
-    path = './tmp.txt'
-    f = open(path, 'w+', encoding='utf-8')
-    f.write('''as
-d
-asf
-23t
-q34t34
-fqwedfawef
-s
-ca
-sdc''')
-    f.close()
-    f = open(path, 'r', encoding='utf-8')
-    print(f.read().splitlines())
-    f.close()
-
-    # ff = open(path, 'r', encoding='utf-8')
-    # print(ff.readlines())
-    # ff.close()
-
-
 def top_ten(product_data):
     # product 정보 -> HTML 문법 (+ Posting 양식에 넣음)
-    data_file = f'./{now}_{keyword}.txt'
+    data_file = f'Tistory/log/{now}_{keyword}.txt'
     f = open(data_file, 'w+', encoding='utf-8')
     for i in range(10):
         product_name = product_data[i]['productName']
