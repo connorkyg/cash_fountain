@@ -7,6 +7,8 @@ import hmac
 import hashlib
 import time
 
+now = time.strftime('%Y%m%d_%H%M%S')
+
 DOMAIN = "https://api-gateway.coupang.com"
 
 def generate_hmac(method, url, secret_key, access_key):
@@ -32,5 +34,7 @@ def get_product(url):
     jsondata = json.loads(retdata)
     data = jsondata['data']
     productdata = data['productData']
+    with open(f'./product_data_{now}', 'w+', encoding='utf-8') as f:
+        f.write(productdata)
 
     return productdata
