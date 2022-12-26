@@ -5,7 +5,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import time
 import os
+import random
 
+
+random_sleep = time.sleep(random.sample(range(2, 5), 1)[0])
 
 # todo: urllib 사용해서 호출
 # todo: 아직 미완성... click이 잘 안될걸?
@@ -31,13 +34,14 @@ def access_token():
                 driver.find_element(By.CLASS_NAME, 'txt_login').click()
                 driver.find_element(By.XPATH, '//*[@id="input-loginKey"]').send_keys(secrets.LOGIN_INFO['ID'])
                 driver.find_element(By.XPATH, '//*[@id="input-password"]').send_keys(secrets.LOGIN_INFO['PW'])
-                time.sleep(2)
+                random_sleep
                 driver.find_element(By.XPATH, '//*[@id="mainContent"]/div/div/form/div[4]/button[1]').click()
-                time.sleep(2)
+                random_sleep
                 driver.get(get_auth_url)
-                time.sleep(2)
+                random_sleep
                 driver.find_element(By.XPATH, '//*[@id="contents"]/div[4]/button[1]').click()
-                time.sleep(2)
+                random_sleep
+
                 auth_code = driver.current_url.split('=')[1].split('&')[0]
                 print(f'Authorization code: {auth_code}')
                 f.write(auth_code)
@@ -54,7 +58,8 @@ def access_token():
     }
 
     # Access-Token 발급
-    get_access_token = requests.get(access_token_url, params=get_access_token_params, headers={'Accept': 'application/xml; charset=utf-8', 'User-Agent': USER_AGENT})
+    get_access_token = requests.get(access_token_url, params=get_access_token_params,
+                                    headers={'Accept': 'application/xml; charset=utf-8', 'User-Agent': USER_AGENT})
     token_tmp = get_access_token.text
     token = token_tmp.split('=')[1]
     print(f'Access-Token: {token}')
