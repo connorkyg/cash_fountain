@@ -7,7 +7,7 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 BLOG_NAME = secrets.BLOG_INFO['BLOG_NAME']
 
 def read_list():
-    access_token = auth.access_token()
+    access_token = auth.get_access_token()
     # https://www.tistory.com/apis/post/list?access_token={access-token}&output={output-type}&blogName={blog-name}&page={page-number}
     baseUrl = 'https://www.tistory.com/apis/post/list'
     params = {
@@ -21,7 +21,7 @@ def read_list():
 
 
 def read_post():
-    access_token = auth.access_token()
+    access_token = auth.get_access_token()
     # https://www.tistory.com/apis/post/read?access_token={access-token}&blogName={blog-name}&postId={post-id}
     baseUrl = 'https://www.tistory.com/apis/post/list'
     params = {
@@ -35,7 +35,7 @@ def read_post():
 
 
 def exec_post(keyword, content):
-    access_token = auth.access_token()
+    access_token = auth.get_access_token()
     baseUrl = 'https://www.tistory.com/apis/post/write'
     # todo: dict에 인자?
     data = {

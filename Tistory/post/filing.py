@@ -20,11 +20,12 @@ def top_ten(product_data):
                 product_isRocket = '로켓배송 ✔'
             else:
                 product_isRocket = ''
-            # 무료배송
-            if product_data[i]['isFreeShipping'] == 'True':
-                product_isFreeShip = '무료배송 ✔'
-            else:
-                product_isFreeShip = ''
+            # # 무료배송
+            # # TODO: 무배가 있는 data도 있고 없는 data도 있는듯 함. 재확인 필요
+            # if product_data[i]['isFreeShipping'] == 'True':
+            #     product_isFreeShip = '무료배송 ✔'
+            # else:
+            #     product_isFreeShip = ''
 
             f.write(f'''<div>{product_rank}번<br>
 {product_name}<br>
@@ -35,7 +36,6 @@ def top_ten(product_data):
 </button>
 <br>
 {product_isRocket}<br>
-{product_isFreeShip}<br>
 ''')
         f.write('''<p style="text-align: right;" data-ke-size="size14"><span style="color: #dddddd;">'''
                 '''<i>파트너스&nbsp;활동을&nbsp;통해&nbsp;일정액의&nbsp;수수료를&nbsp;제공받을&nbsp;수&nbsp;있음</i></span></p>''')
