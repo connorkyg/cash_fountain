@@ -1,13 +1,13 @@
 import time
-from Tistory.post import post
+import random
 
-keyword = post.keyword
 now = time.strftime('%Y%m%d_%H%M%S')
+percent = random.sample(range(50, 85), 1)[0]
 
 
-def top_ten(product_data):
+def top_ten(product_data, keyword):
     # product 정보 -> HTML 문법 (+ Posting 양식에 넣음)
-    data_file = f'./{now}_{keyword}.txt'
+    data_file = f'../log/{now}_{keyword}.txt'
     with open(data_file, 'w+', encoding='utf-8') as f:
         for i in range(10):
             product_name = product_data[i]['productName']
@@ -27,20 +27,24 @@ def top_ten(product_data):
             # else:
             #     product_isFreeShip = ''
 
-            f.write(f'''<div>{product_rank}번<br>
+            f.write(f'''<div>판매 순위: {product_rank}위<br>
 {product_name}<br>
 {product_price}원<br>
-<img src={product_img} href='{product_url}'><br>
-<button type="button" onclick="window.open('{product_url}')">
+<img style="width: 40%;" src="{product_img}"><br>
+<h2 data-ke-size="size26"><a href="{product_url}" target="_blank" rel="noopener"><span style="color: #0000ff;"><b>
+최대 {percent}% 할인 중!
+</b></span></a></h2><br>
+<h2 data-ke-size="size26"><a href="{product_url}" target="_blank" rel="noopener"><span style="color: #0000ff;"><b>
 최저가 사러가기
-</button>
+</b></span></a></h2>
 <br>
-{product_isRocket}<br>
+{product_isRocket}<br><br><br><br>
 ''')
         f.write('''<p style="text-align: right;" data-ke-size="size14"><span style="color: #dddddd;">'''
                 '''<i>파트너스&nbsp;활동을&nbsp;통해&nbsp;일정액의&nbsp;수수료를&nbsp;제공받을&nbsp;수&nbsp;있음</i></span></p>''')
 
     with open(data_file, 'r', encoding='utf-8') as f:
-        content = f.readlines()
+        content = f.read()
+        print(content)
 
     return content

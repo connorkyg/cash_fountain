@@ -41,8 +41,10 @@ def get_product(url):
     jsondata = json.loads(retdata)
     data = jsondata['data']
     productdata = data['productData']
+    print(type(productdata))
     print(productdata)
-    with open(f'./product_data_{now}.txt', 'w+', encoding='utf-8') as f:
+    with open(f'../log/product_data_{now}.txt', 'w+', encoding='utf-8') as f:
         f.write(str(productdata))
 
     return productdata
+

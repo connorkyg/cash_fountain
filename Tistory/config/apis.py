@@ -1,6 +1,8 @@
 import requests
 from Tistory.config import auth
 from Tistory.config import secrets
+from Coupang.data import titles
+import random
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
 # todo: input
@@ -42,7 +44,8 @@ def exec_post(keyword, content):
         'access_token': f'{access_token}',
         'output': 'json',
         'blogName': f'{BLOG_NAME}',
-        'title': f'TOP 10 of {keyword}',
+        # 'title': f'TOP 10 of {keyword}',  # todo
+        'title': f'{random.sample(titles.title_list, 1)[0]}',  # todo
         'content': f'{content}',
         'visibility': 3,
         'tag': '트렌드, 꿀팁, 내돈내산, 리뷰, 최저가'
