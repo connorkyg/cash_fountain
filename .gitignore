@@ -1,10 +1,11 @@
-__pycache__/
 *.DS_Store
+__pycache__/
 imgs
 utils
 sample_data
+Coupang/data/
+Tistory/log/
 Coupang/config/secrets.py
 Tistory/config/secrets.py
-Coupang/data/keywords.py
 test*
-Tistory/log/
+Log
