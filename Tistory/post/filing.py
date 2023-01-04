@@ -11,7 +11,7 @@ def top_ten(product_data, keyword):
     with open(data_file, 'w+', encoding='utf-8') as f:
         for i in range(10):
             product_name = product_data[i]['productName']
-            product_price = product_data[i]['productPrice']
+            product_price = format(product_data[i]['productPrice'], ',')
             product_img = product_data[i]['productImage']
             product_url = product_data[i]['productUrl']
             product_rank = product_data[i]['rank']
@@ -33,12 +33,12 @@ def top_ten(product_data, keyword):
 <img style="width: 40%;" src="{product_img}"><br>
 <h2 data-ke-size="size26"><a href="{product_url}" target="_blank" rel="noopener"><span style="color: #0000ff;"><b>
 최대 {percent}% 할인 중!
-</b></span></a></h2><br>
+</b></span></a></h2>
 <h2 data-ke-size="size26"><a href="{product_url}" target="_blank" rel="noopener"><span style="color: #0000ff;"><b>
 최저가 사러가기
 </b></span></a></h2>
 <br>
-{product_isRocket}<br><br><br><br>
+{product_isRocket}<br><br>
 ''')
         f.write('''<p style="text-align: right;" data-ke-size="size14"><span style="color: #dddddd;">'''
                 '''<i>파트너스&nbsp;활동을&nbsp;통해&nbsp;일정액의&nbsp;수수료를&nbsp;제공받을&nbsp;수&nbsp;있음</i></span></p>''')

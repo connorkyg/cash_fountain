@@ -40,7 +40,7 @@ def read_post():
 def exec_post(keyword, content):
     access_token = auth.get_access_token()
     baseUrl = 'https://www.tistory.com/apis/post/write'
-    tag = {random.sample(tags.tag_list, 4)}
+    tag = random.sample(tags.tag_list, 4)
     data = {
         'access_token': f'{access_token}',
         'output': 'json',
@@ -50,9 +50,6 @@ def exec_post(keyword, content):
         'visibility': 3,
         'tag': f'{tag[0]}, {tag[1]}, {tag[2]}, {tag[3]}'
     }
-    a = {random.sample(tags.tag_list, 4)}
-    for i in range(4):
-        print(a[i])
 
     response = requests.post(baseUrl, data=data, headers={'Accept': 'application/xml; charset=utf-8', 'User-Agent': USER_AGENT})
     print(response.text)

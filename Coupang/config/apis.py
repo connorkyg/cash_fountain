@@ -3,12 +3,12 @@
 from Coupang.config import secrets
 import requests
 import json
-import os
 import hmac
 import hashlib
 import time
 
 now = time.strftime('%Y%m%d_%H%M%S')
+now_log = time.strftime('%Y-%m-%d %H:%M:%S')
 
 DOMAIN = "https://api-gateway.coupang.com"
 
@@ -35,16 +35,16 @@ def get_product(url):
         print(response.text)
         print("[ERROR]: def get_product")
         exit()
+    else:
+        with open('../log/coupang_debug_api.txt', 'w+', encoding='utf-8') as f:
+            f.write(f'{now_log} API request\n')
+            f.write(f'\t\t\t\t\t{response.url}')
+        retdata = json.dumps(response.json(), indent=4).encode('utf-8')
+        jsondata = json.loads(retdata)
+        data = jsondata['data']
+        productdata = data['productData']
+        with open(f'../log/product_data_{now}.txt', 'w+', encoding='utf-8') as f:
+            f.write(str(productdata))
 
-    print('API 차감 -1회')
-    retdata = json.dumps(response.json(), indent=4).encode('utf-8')
-    jsondata = json.loads(retdata)
-    data = jsondata['data']
-    productdata = data['productData']
-    print(type(productdata))
-    print(productdata)
-    with open(f'../log/product_data_{now}.txt', 'w+', encoding='utf-8') as f:
-        f.write(str(productdata))
-
-    return productdata
+        return productdata
 
