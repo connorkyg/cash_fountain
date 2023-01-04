@@ -2,6 +2,7 @@ import requests
 from Tistory.config import auth
 from Tistory.config import secrets
 from Coupang.data import titles
+from Coupang.data import tags
 import random
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
@@ -39,17 +40,20 @@ def read_post():
 def exec_post(keyword, content):
     access_token = auth.get_access_token()
     baseUrl = 'https://www.tistory.com/apis/post/write'
-    # todo: dict에 인자?
+    tag = {random.sample(tags.tag_list, 4)}
     data = {
         'access_token': f'{access_token}',
         'output': 'json',
         'blogName': f'{BLOG_NAME}',
-        # 'title': f'TOP 10 of {keyword}',  # todo
-        'title': f'{random.sample(titles.title_list, 1)[0]}',  # todo
+        'title': f'{random.sample(titles.title_list, 1)[0]} {keyword} {random.sample(titles.title_end, 1)[0]}',
         'content': f'{content}',
         'visibility': 3,
-        'tag': '트렌드, 꿀팁, 내돈내산, 리뷰, 최저가'
+        'tag': f'{tag[0]}, {tag[1]}, {tag[2]}, {tag[3]}'
     }
+    a = {random.sample(tags.tag_list, 4)}
+    for i in range(4):
+        print(a[i])
+
     response = requests.post(baseUrl, data=data, headers={'Accept': 'application/xml; charset=utf-8', 'User-Agent': USER_AGENT})
     print(response.text)
 

@@ -1,6 +1,6 @@
-# debug test
+import random
+from Coupang.data import tags
 
-a = 1
-b = 6
-c = 2
-print(a + b)
+a = random.sample(tags.tag_list, 4)
+
+print(a[0])
