@@ -14,6 +14,7 @@ from urllib import parse
 
 if __name__ == '__main__':
     while True:
+        # time.sleep(60 * 65)
         try:
             for i in range(10):
                 keyword = random.choice(keyword_list)
@@ -23,8 +24,10 @@ if __name__ == '__main__':
 
                 # POSTING - TOP 10 사러가기
                 product_data = coupangApis.get_product(url)
+                time.sleep(5)
                 content = filing.top_ten(product_data, keyword)
-                tistoryApis.exec_post(keyword, content)
+                time.sleep(5)
+                # tistoryApis.exec_post(keyword, content) # COMMENT: Tistory에 API 글쓰기가 많아지면 차단됨. Selenium으로 대체
                 # tistoryApis.read_post()
             time.sleep(60 * 65)
         except:

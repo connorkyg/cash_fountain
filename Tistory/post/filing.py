@@ -7,7 +7,7 @@ percent = random.sample(range(50, 85), 1)[0]
 
 def top_ten(product_data, keyword):
     # product 정보 -> HTML 문법 (+ Posting 양식에 넣음)
-    data_file = f'../log/{now}_{keyword}.txt'
+    data_file = f'../log/product_html/{now}_{keyword}.txt'
     with open(data_file, 'w+', encoding='utf-8') as f:
         for i in range(10):
             product_name = product_data[i]['productName']
@@ -30,7 +30,7 @@ def top_ten(product_data, keyword):
             f.write(f'''<div>판매 순위: {product_rank}위<br>
 {product_name}<br>
 {product_price}원<br>
-<img style="width: 40%;" src="{product_img}"><br>
+<img style="width: 70%;" src="{product_img}"><br>
 <h2 data-ke-size="size26"><a href="{product_url}" target="_blank" rel="noopener"><span style="color: #0000ff;"><b>
 최대 {percent}% 할인 중!
 </b></span></a></h2>
@@ -45,6 +45,5 @@ def top_ten(product_data, keyword):
 
     with open(data_file, 'r', encoding='utf-8') as f:
         content = f.read()
-        print(content)
 
     return content
