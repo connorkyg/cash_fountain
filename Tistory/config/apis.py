@@ -14,7 +14,6 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 BLOG_NAME = secrets.BLOG_INFO['BLOG_NAME']
 path_auth_code = f'./authorization_code_{secrets.BLOG_INFO["BLOG_NAME"]}.txt'
 path_access_token = f'./access_token_{secrets.BLOG_INFO["BLOG_NAME"]}.txt'
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36"
 
 
 def random_sleep():
