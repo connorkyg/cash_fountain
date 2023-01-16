@@ -26,7 +26,7 @@ def generate_hmac(method, url, secret_key, access_key):
     return "CEA algorithm=HmacSHA256, access-key={}, signed-date={}, signature={}".format(access_key, datetime, signature)
 
 
-def get_product(url):
+def get_product():
     method = 'GET'
     authorization = generate_hmac(method, url, secrets.API_KEY['COUPANG_SECRET_KEY'], secrets.API_KEY['COUPANG_ACCESS_KEY'])
     coupang_url = '{}{}'.format(DOMAIN, url)

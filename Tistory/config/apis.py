@@ -1,11 +1,17 @@
+import time
 import random
 import requests
+from urllib import parse
 
 from Tistory.config import manage
 from Tistory.config import chrome
 from Coupang.data import titles
 from Coupang.data import tags
 from Tistory.config import secrets
+from Coupang.data.keywords import keyword_list
+from Coupang.config import apis as coupangApis
+from Tistory.config import apis as tistoryApis
+from Tistory.post import filing
 
 BLOG_NAME = secrets.BLOG_INFO["BLOG_NAME"]
 
@@ -19,7 +25,7 @@ class api_list:
         params = {
             'access_token': f'{manage.tistory().get_access_token()}',
             'blogName': f'{secrets.BLOG_INFO["BLOG_NAME"]}',
-            'postId': input()
+            'postId': input("post id: ")
         }
         response = requests.get(baseUrl, params=params, headers={'Accept': 'application/xml; charset=utf-8',
                                                                  'User-Agent': chrome.browser().USER_AGENT})
@@ -39,7 +45,18 @@ class api_list:
                                          'User-Agent': chrome.browser().USER_AGENT})
         print(response.text)
 
-    def post_write(self, keyword, content):
+    def post_write(self):
+        # TODO: 키워드를 DB에 넣어서 random 추출하자!!!!!!!!!!!!!!!!
+        keyword = random.choice(keyword_list)
+        url_keyword = parse.quote(keyword)
+        limit = 10
+        url = f"/v2/providers/affiliate_open_api/apis/openapi/products/search?keyword={url_keyword}&limit={limit}"
+
+        product_data = coupangApis.get_product(url)
+        manage.random_sleep(2, 5)
+        content = filing.top_ten(product_data, keyword)
+        manage.random_sleep(2, 5)
+
         baseUrl = 'https://www.tistory.com/apis/post/write'
         tag = random.sample(tags.tag_list, 4)
         data = {
